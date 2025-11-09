@@ -1,0 +1,5 @@
+html, body { height:100%; margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+header { padding:10px 12px; background:#111; color:#fff; display:flex; align-items:center; gap:16px; }
+.controls label { margin-right: 12px; cursor: pointer; }
+#map { height: calc(100% - 56px); width: 100%; }
+.leaflet-popup-content { font-size: 14px; }

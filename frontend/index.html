@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <title>Smart City – Open Data (NGSI-LD)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+  <header>
+    <h1>Smart City – NGSI-LD Demo</h1>
+    <div class="controls">
+      <label><input type="checkbox" id="layer-aqi" checked/> AQI</label>
+      <label><input type="checkbox" id="layer-poi" checked/> POI</label>
+      <label><input type="checkbox" id="layer-weather" checked/> Weather</label>
+    </div>
+  </header>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

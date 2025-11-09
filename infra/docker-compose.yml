@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo:5
+    restart: unless-stopped
+    ports: ["27017:27017"]
+    volumes: [ "mongo_data:/data/db" ]
+
+  orion:
+    image: fiware/orion-ld:latest
+    restart: unless-stopped
+    depends_on: [ mongo ]
+    environment:
+      - ORIONLD_MONGO_HOST=mongo
+      - ORIONLD_LOG_LEVEL=DEBUG
+    command: ["-dbhost","mongo","-logLevel","DEBUG"]
+    ports: ["1026:1026"]
+
+  api:
+    build:
+      context: ../
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    env_file: [ ../.env ]
+    depends_on: [ orion ]
+    volumes:
+      - ../data:/data
+      - ../frontend:/srv/www/frontend:ro
+    ports: ["8000:8000"]
+
+  web:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on: [ api ]
+    volumes:
+      - ../frontend:/usr/share/nginx/html:ro
+    ports: ["8080:80"]
+
+volumes:
+  mongo_data:
